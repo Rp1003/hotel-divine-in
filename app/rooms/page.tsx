@@ -8,6 +8,7 @@ export const metadata: Metadata = {
 export default function RoomsPage() {
   const rooms = [
     {
+      image: '/images/room-1.png',
       title: '2 Bed AC Room',
       description: 'Spacious king-size bed with modern amenities',
       beds: '1 King Bed',
@@ -22,6 +23,7 @@ export default function RoomsPage() {
       ]
     },
     {
+      image: '/images/room-2.png',
       title: '3 Person AC Bedroom',
       description: 'Comfortable room with neat toilet and all basic facilities',
       beds: '2 Beds',
@@ -36,6 +38,7 @@ export default function RoomsPage() {
       ]
     },
     {
+      image: '/images/room-3.png',
       title: '4 Bed AC Room',
       description: 'Best quality family room with all basic facilities',
       beds: '2 King Beds',
@@ -81,10 +84,7 @@ export default function RoomsPage() {
                 data-delay={index * 100}
               >
                 <div className="room-img">
-                  <div 
-                    className="room-img-placeholder" 
-                    style={{ backgroundColor: index === 0 ? '#ddd' : index === 1 ? '#ccc' : '#bbb' }}
-                  ></div>
+                  <img src={room.image} alt={room.title} className="room-img-placeholder" />
                 </div>
                 <div className="room-info">
                   <h3>{room.title}</h3>

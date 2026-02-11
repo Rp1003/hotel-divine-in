@@ -30,6 +30,7 @@ export default function GalleryPage() {
           
           <div className="gallery-grid">
             <div className="gallery-item item-1 fade-in-up">
+              {/* <img src="/images/gallery-1.png" alt="Hotel Lobby" className="gallery-overlay" /> */}
               <div className="gallery-overlay">
                 <i className="fa-solid fa-search-plus"></i>
               </div>

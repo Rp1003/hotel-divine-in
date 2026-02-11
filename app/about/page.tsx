@@ -67,7 +67,7 @@ export default function AboutPage() {
             </div>
             <div className="value-card fade-in-up" data-delay="100">
               <div className="value-icon">
-                <i className="fa-solid fa-sparkles"></i>
+                <i className="fa-solid fa-spray-can-sparkles"></i>
               </div>
               <h3>Cleanliness</h3>
               <p>Maintaining the highest standards of cleanliness and hygiene in all our rooms and facilities.</p>

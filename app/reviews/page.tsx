@@ -41,7 +41,8 @@ export default function ReviewsPage() {
     <main className="page-content">
       {/* Page Header */}
       <section className="page-header">
-        <div className="page-header-overlay"></div>
+        <img src="/images/review-bg.png" className="page-header-overlay" />
+        {/* <div className="page-header-overlay"></div> */}
         <div className="container">
           <div className="page-header-content fade-in-up">
             <h1 className="page-title">Guest Reviews</h1>
