@@ -110,7 +110,7 @@ export default function ContactPage() {
               </div>
               <h3>By Train</h3>
               <p><strong>Dwarka Railway Station</strong></p>
-              <p>1 km from hotel (10 minutes by taxi)</p>
+              <p>1 km from hotel (10 minutes by walking distance)</p>
               <p>Auto-rickshaws and taxis available outside</p>
             </div>
             
