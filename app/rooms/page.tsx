@@ -18,7 +18,6 @@ export default function RoomsPage() {
         'Free Wi-Fi',
         'Flat Screen TV',
         'Attached Bathroom',
-        'Room Service',
         'Daily Housekeeping'
       ]
     },
@@ -26,14 +25,13 @@ export default function RoomsPage() {
       image: '/images/room-2.png',
       title: '3 Person AC Bedroom',
       description: 'Comfortable room with neat toilet and all basic facilities',
-      beds: '2 Beds',
+      beds: '1 King Bed & 1 Single Bed',
       guests: '3 Guests',
       features: [
         'Air Conditioning',
         'Free Wi-Fi',
         'Flat Screen TV',
         'Attached Bathroom',
-        'Mini Fridge',
         'Daily Housekeeping'
       ]
     },
@@ -48,7 +46,6 @@ export default function RoomsPage() {
         'Free Wi-Fi',
         'Flat Screen TV',
         'Attached Bathroom',
-        'Spacious Layout',
         'Daily Housekeeping'
       ]
     }

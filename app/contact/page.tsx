@@ -28,9 +28,9 @@ export default function ContactPage() {
                 <i className="fa-solid fa-location-dot"></i>
               </div>
               <h3>Visit Us</h3>
-              <p>BHADRAKALI CHAWK, behind DR. AMBEDKAR STATUE</p>
-              <p>Dwarka, Gujarat 361335</p>
-              <p>India</p>
+              <p>BHADRAKALI CHAWK, BEHIND DR. AMBEDKAR STATUE</p>
+              <p>DWARKA, GUJARAT 361335</p>
+              <p>INDIA</p>
             </div>
             
             <div className="contact-card">
@@ -65,9 +65,9 @@ export default function ContactPage() {
                 <i className="fa-solid fa-envelope"></i>
               </div>
               <h3>Email Us</h3>
-              <p>info@hoteldivineinn.com</p>
+              <p>hoteldivinedwarka@gmail.com</p>
               <p>We&apos;ll respond within 24 hours</p>
-              <a href="mailto:info@hoteldivineinn.com" className="contact-link">Send Email</a>
+              <a href="mailto:hoteldivinedwarka@gmail.com" className="contact-link">Send Email</a>
             </div>
           </div>
         </div>
@@ -110,7 +110,7 @@ export default function ContactPage() {
               </div>
               <h3>By Train</h3>
               <p><strong>Dwarka Railway Station</strong></p>
-              <p>3 km from hotel (10 minutes by taxi)</p>
+              <p>1 km from hotel (10 minutes by taxi)</p>
               <p>Auto-rickshaws and taxis available outside</p>
             </div>
             
@@ -120,7 +120,7 @@ export default function ContactPage() {
               </div>
               <h3>By Air</h3>
               <p><strong>Jamnagar Airport</strong></p>
-              <p>130 km from hotel (2.5 hours by car)</p>
+              <p>130 km from hotel (2 hours by car)</p>
               <p>Private cabs can be arranged</p>
             </div>
             
@@ -140,11 +140,11 @@ export default function ContactPage() {
             <ul className="places-list">
               <li>
                 <i className="fa-solid fa-place-of-worship"></i>
-                <span><strong>Dwarkadhish Temple</strong> - 1.5 km (Walking distance)</span>
+                <span><strong>Dwarkadhish Temple</strong> - 500 meters (Walking distance)</span>
               </li>
               <li>
                 <i className="fa-solid fa-water"></i>
-                <span><strong>Gomti Ghat</strong> - 2 km (5 minutes)</span>
+                <span><strong>Gomti Ghat</strong> - 1 km (5 minutes)</span>
               </li>
               <li>
                 <i className="fa-solid fa-landmark"></i>
@@ -152,7 +152,7 @@ export default function ContactPage() {
               </li>
               <li>
                 <i className="fa-solid fa-umbrella-beach"></i>
-                <span><strong>Dwarka Beach</strong> - 3 km (10 minutes)</span>
+                <span><strong>Shivrajpur Beach</strong> - 12 km (20 minutes)</span>
               </li>
             </ul>
           </div>

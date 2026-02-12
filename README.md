@@ -214,7 +214,7 @@ npm run build
 
 For the hotel:
 - **Phone:** +91 9974089159
-- **Email:** info@hoteldivineinn.com
+- **Email:** hoteldivinedwarka@gmail.com
 - **Location:** Dwarka, Gujarat 361335
 
 ## 📄 License

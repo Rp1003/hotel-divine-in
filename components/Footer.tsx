@@ -33,7 +33,7 @@ export default function Footer() {
           <ul>
             <li>
               <i className="fa-solid fa-location-dot"></i>
-              BHADRAKALI CHAWK, behind DR. AMBEDKAR STATUE, Dwarka, Gujarat 361335
+              BHADRAKALI CHAWK, BEHIND DR. AMBEDKAR STATUE, DWARKA, GUJARAT 361335
             </li>
             <li>
               <i className="fa-solid fa-phone"></i>
@@ -41,7 +41,7 @@ export default function Footer() {
             </li>
             <li>
               <i className="fa-solid fa-envelope"></i>
-              <a href="mailto:info@hoteldivineinn.com">info@hoteldivineinn.com</a>
+              <a href="mailto:hoteldivinedwarka@gmail.com">hoteldivinedwarka@gmail.com</a>
             </li>
             <li>
               <i className="fa-brands fa-whatsapp"></i>

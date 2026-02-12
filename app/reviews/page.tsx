@@ -1,12 +1,19 @@
-import type { Metadata } from "next";
+'use client';
 
-export const metadata: Metadata = {
-  title: "Reviews | Hotel Divine Inn",
-  description: "Read what our guests say about their experience at Hotel Divine Inn Dwarka.",
-};
+import { useEffect, useState } from 'react';
+import type { Metadata } from "next";
+import type { ReviewsData, Review } from '@/types/google-places';
+
+// Note: Metadata export removed as this is now a client component
+// You may want to move metadata to a layout.tsx if needed
 
 export default function ReviewsPage() {
-  const reviews = [
+  const [reviewsData, setReviewsData] = useState<ReviewsData | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  // Fallback static reviews in case API fails
+  const fallbackReviews: Review[] = [
     {
       name: "Tarang",
       location: "India",
@@ -37,12 +44,49 @@ export default function ReviewsPage() {
     }
   ];
 
+  useEffect(() => {
+    async function fetchReviews() {
+      try {
+        const response = await fetch('/api/reviews');
+        const data = await response.json();
+
+        if (data.fallback || data.error) {
+          // Use fallback data if API fails
+          console.warn('Using fallback reviews:', data.error || data.message);
+          setReviewsData({
+            averageRating: 5.0,
+            totalReviews: 500,
+            reviews: fallbackReviews
+          });
+        } else {
+          setReviewsData(data);
+        }
+      } catch (err) {
+        console.error('Error fetching reviews:', err);
+        setError('Failed to load reviews');
+        // Use fallback data
+        setReviewsData({
+          averageRating: 5.0,
+          totalReviews: 500,
+          reviews: fallbackReviews
+        });
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchReviews();
+  }, []);
+
+  const reviews = reviewsData?.reviews || fallbackReviews;
+  const averageRating = reviewsData?.averageRating || 5.0;
+  const totalReviews = reviewsData?.totalReviews || 500;
+
   return (
     <main className="page-content">
       {/* Page Header */}
       <section className="page-header">
         <img src="/images/review-bg.png" className="page-header-overlay" />
-        {/* <div className="page-header-overlay"></div> */}
         <div className="container">
           <div className="page-header-content fade-in-up">
             <h1 className="page-title">Guest Reviews</h1>
@@ -54,36 +98,42 @@ export default function ReviewsPage() {
       {/* Reviews Stats */}
       <section className="section reviews-stats-section">
         <div className="container">
-          <div className="stats-grid fade-in-up">
-            <div className="stat-card">
-              <div className="stat-icon">
-                <i className="fa-solid fa-star"></i>
-              </div>
-              <h3>5.0</h3>
-              <p>Average Rating</p>
+          {loading ? (
+            <div className="text-center">
+              <p>Loading reviews...</p>
             </div>
-            <div className="stat-card">
-              <div className="stat-icon">
-                <i className="fa-solid fa-users"></i>
+          ) : (
+            <div className="stats-grid fade-in-up">
+              <div className="stat-card">
+                <div className="stat-icon">
+                  <i className="fa-solid fa-star"></i>
+                </div>
+                <h3>{averageRating.toFixed(1)}</h3>
+                <p>Average Rating</p>
               </div>
-              <h3>500+</h3>
-              <p>Happy Guests</p>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">
-                <i className="fa-solid fa-trophy"></i>
+              <div className="stat-card">
+                <div className="stat-icon">
+                  <i className="fa-solid fa-users"></i>
+                </div>
+                <h3>{totalReviews}+</h3>
+                <p>Happy Guests</p>
               </div>
-              <h3>100%</h3>
-              <p>Satisfaction Rate</p>
-            </div>
-            <div className="stat-card">
-              <div className="stat-icon">
-                <i className="fa-solid fa-heart"></i>
+              <div className="stat-card">
+                <div className="stat-icon">
+                  <i className="fa-solid fa-trophy"></i>
+                </div>
+                <h3>100%</h3>
+                <p>Satisfaction Rate</p>
               </div>
-              <h3>4.9</h3>
-              <p>Guest Experience</p>
+              <div className="stat-card">
+                <div className="stat-icon">
+                  <i className="fa-solid fa-heart"></i>
+                </div>
+                <h3>{averageRating > 0 ? (averageRating - 0.1).toFixed(1) : '4.9'}</h3>
+                <p>Guest Experience</p>
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -95,41 +145,55 @@ export default function ReviewsPage() {
             <h2 className="section-title">What Our Guests Say</h2>
             <p>Real experiences from real guests</p>
           </div>
-          
-          <div className="reviews-grid">
-            {reviews.map((review, index) => (
-              <div 
-                key={index} 
-                className="review-card-full fade-in-up" 
-                data-delay={index * 100}
-              >
-                <div className="review-header">
-                  <div className="reviewer-info">
-                    <div className="reviewer-img">
-                      <i className="fa-solid fa-user"></i>
+
+          {loading ? (
+            <div className="text-center">
+              <p>Loading reviews...</p>
+            </div>
+          ) : error && !reviewsData ? (
+            <div className="text-center">
+              <p style={{ color: 'red' }}>{error}</p>
+            </div>
+          ) : (
+            <div className="reviews-grid">
+              {reviews.map((review, index) => (
+                <div
+                  key={index}
+                  className="review-card-full fade-in-up"
+                  data-delay={index * 100}
+                >
+                  <div className="review-header">
+                    <div className="reviewer-info">
+                      <div className="reviewer-img">
+                        {review.profilePhoto ? (
+                          <img src={review.profilePhoto} alt={review.name} className='reviewer-img' />
+                        ) : (
+                          <i className="fa-solid fa-user"></i>
+                        )}
+                      </div>
+                      <div>
+                        <h5>{review.name}</h5>
+                        <span className="review-location">
+                          <i className="fa-solid fa-location-dot"></i>
+                          {review.location}
+                        </span>
+                      </div>
                     </div>
-                    <div>
-                      <h5>{review.name}</h5>
-                      <span className="review-location">
-                        <i className="fa-solid fa-location-dot"></i>
-                        {review.location}
-                      </span>
+                    <div className="review-rating">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <i key={i} className="fa-solid fa-star"></i>
+                      ))}
                     </div>
                   </div>
-                  <div className="review-rating">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <i key={i} className="fa-solid fa-star"></i>
-                    ))}
+                  <p className="review-text">&quot;{review.text}&quot;</p>
+                  <div className="review-date">
+                    <i className="fa-solid fa-calendar"></i>
+                    {review.date}
                   </div>
                 </div>
-                <p className="review-text">&quot;{review.text}&quot;</p>
-                <div className="review-date">
-                  <i className="fa-solid fa-calendar"></i>
-                  {review.date}
-                </div>
-              </div>
-            ))}
-          </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 
@@ -139,8 +203,8 @@ export default function ReviewsPage() {
           <div className="cta-content text-center fade-in-up">
             <h2>Share Your Experience</h2>
             <p>We&apos;d love to hear about your stay at Hotel Divine Inn</p>
-            <a 
-              href="https://wa.me/message/RJJFT7WR7W3ME1" 
+            <a
+              href="https://wa.me/message/RJJFT7WR7W3ME1"
               className="btn-primary"
               target="_blank"
               rel="noopener noreferrer"
